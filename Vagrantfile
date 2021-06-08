@@ -23,5 +23,10 @@ Vagrant.configure("2") do |config|
      server.vm.network "forwarded_port", guest: 8000, host: 8000
      server.vm.network "forwarded_port", guest: 8081, host: 8081
      server.vm.network "forwarded_port", guest: 80, host: 8080
+     server.vm.provider "virtualbox" do |vb|
+	        vb.customize [ "modifyvm", :id, "--uartmode1", "disconnected" ]
+                vb.cpus = 2
+                vb.memory = 4096
+	end
   end
 end
