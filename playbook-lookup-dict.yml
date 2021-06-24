@@ -1,0 +1,17 @@
+- hosts: remoto
+  gather_facts: False
+  vars:
+    dict: 
+      { 
+      net.ipv4.conf.all.log_martians: 5, 
+      kernel.sysrq: 343, 
+      net.ipv4.ip_forward: 1, 
+      }
+
+  tasks:
+  - name: Exibindo variaveis
+    lineinfile: 
+      path: /tmp/sysctl.conf
+      line: "{{ item.key }}={{ item.value }}"
+      create: yes
+    with_dict: "{{ dict }}"

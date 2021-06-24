@@ -1,0 +1,23 @@
+- hosts: remoto
+  gather_facts: False
+
+  tasks:
+  - name: Exibindo variaveis
+    user:
+      name: "{{ item.name }}"
+      shell: "{{ item.shell }}"
+      groups: "{{ item.groups }}"
+      uid: "{{ item.uid }}"
+    loop:
+      - name: Aluno1
+        uid: 1020
+        groups: vagrant
+        shell: /bin/sh
+      - name: Aluno2
+        uid: 1021
+        groups: vagrant
+        shell: /bin/bash
+      - name: Aluno3
+        uid: 1022
+        groups: vagrant
+        shell: /bin/bash
